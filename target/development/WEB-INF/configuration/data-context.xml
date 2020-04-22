@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns:tx="http://www.springframework.org/schema/tx"
+       xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+       xmlns:context="http://www.springframework.org/schema/context"
+       xmlns="http://www.springframework.org/schema/beans"
+       xsi:schemaLocation="http://www.springframework.org/schema/beans http://www.springframework.org/schema/beans/spring-beans.xsd
+       http://www.springframework.org/schema/tx http://www.springframework.org/schema/tx/spring-tx.xsd
+       http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context.xsd">
+
+<context:annotation-config/>
+    <bean id="sessionFactoryG2C" class="org.springframework.orm.hibernate4.LocalSessionFactoryBean">
+        <property name="dataSource" ref="dataSourceG2C"/>
+        <property name="packagesToScan">
+            <array>
+                <value>com.ngawang.zepa</value>
+            </array>
+        </property>
+        <property name="hibernateProperties">
+            <value>
+                hibernate.show_sql=true
+                hibernate.format_sql=true
+                hibernate.dialect=com.ngawang.zepa.helper.MySQLCustomDialect
+            </value>
+        </property>
+    </bean>
+
+    <bean id="emFactory" class="org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean">
+        <property name="dataSource" ref="dataSourceBcsea"/>
+        <property name="persistenceUnitName" value="default"/>
+        <property name="jpaVendorAdapter">
+            <bean class="org.springframework.orm.jpa.vendor.HibernateJpaVendorAdapter"/>
+        </property>
+        <property name="jpaProperties">
+            <props>
+                <prop key="hibernate.show_sql">true</prop>
+                <prop key="hibernate.dialect">com.ngawang.zepa.helper.MySQLCustomDialectG2C</prop>
+            </props>
+        </property>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="transactionManagerG2C"/>
+    <bean id="transactionManagerG2C" class="org.springframework.orm.hibernate4.HibernateTransactionManager">
+        <property name="sessionFactory" ref="sessionFactoryG2C"/>
+    </bean>
+
+    <tx:annotation-driven transaction-manager="txManager"/>
+    <bean id="txManager" class="org.springframework.orm.jpa.JpaTransactionManager">
+        <property name="entityManagerFactory" ref="emFactory"/>
+    </bean>
+
+    <bean id="persistenceExceptionTranslationPostProcessor"
+          class="org.springframework.dao.annotation.PersistenceExceptionTranslationPostProcessor">
+    </bean>
+
+    <bean id="queryProps" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations">
+            <list>
+                <value>classpath*:ngawang/zepa/sqlquery/ApproveIssueReplacementCertificateDao.mssql.sql</value>
+                <value>classpath*:ngawang/zepa/sqlquery/ApproveRecheckApplicationDao.mssql.sql</value>
+                <value>classpath*:ngawang/zepa/sqlquery/ChargeAllocationDao.mssql.sql</value>
+                <value>classpath*:ngawang/zepa/sqlquery/ChargeCalculationDao.mssql.sql</value>
+                <value>classpath*:ngawang/zepa/sqlquery/CommonDao.mssql.sql</value>
+                <value>classpath*:ngawang/zepa/sqlquery/IssueEnglishLanProCertificateDao.mssql.sql</value>
+                <value>classpath*:ngawang/zepa/sqlquery/IssueReplacementCertificateDao.mssql.sql</value>
+                <value>classpath*:ngawang/zepa/sqlquery/OperatorsTaskListDao.mssql.sql</value>
+                <value>classpath*:ngawang/zepa/sqlquery/PaymentDetailDao.mssql.sql</value>
+                <value>classpath*:ngawang/zepa/sqlquery/PrintCertificateDao.mssql.sql</value>
+                <value>classpath*:ngawang/zepa/sqlquery/RecheckApplicationDao.mssql.sql</value>
+                <value>classpath*:ngawang/zepa/sqlquery/ReportsDao.mssql.sql</value>
+                <value>classpath*:ngawang/zepa/sqlquery/ServiceActivityDurationDao.mssql.sql</value>
+                <value>classpath*:ngawang/zepa/sqlquery/TrackApplicationDao.mssql.sql</value>
+                <value>classpath*:ngawang/zepa/sqlquery/ViewResultDao.mssql.sql</value>
+            </list>
+        </property>
+    </bean>
+
+    <bean id="msgCodeProps" class="org.springframework.beans.factory.config.PropertiesFactoryBean">
+        <property name="locations">
+            <list>
+                <!--<value>classpath*:lang/acc/batchInstructionProcessing.properties</value>
+                <value>classpath*:lang/inv/commonInvoicegeneration.properties</value>-->
+            </list>
+        </property>
+    </bean>
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

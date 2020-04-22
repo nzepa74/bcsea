@@ -1,0 +1,121 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.1.1.final using JasperReports Library version 6.1.1  -->
+<!-- 2019-10-23T19:48:27 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="PassCertificate" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="fe24a960-ea25-473b-87be-4ccb4958dd68">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="36"/>
+	<property name="ireport.background.image" value="C:\Users\dell\Desktop\statementOfMarks.jpg"/>
+	<property name="ireport.background.image.properties" value="true,true,0.25,2,-270,0,269,599,847"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<property name="com.jaspersoft.studio.data.defaultdataadapter" value="connection.xml"/>
+	<parameter name="INDEX_NO" class="java.lang.String"/>
+	<parameter name="STUDENT_NAME" class="java.lang.String"/>
+	<parameter name="EXAM_YEAR" class="java.lang.String"/>
+	<parameter name="SCHOOL_NAME" class="java.lang.String"/>
+	<parameter name="DATE_OF_BIRTH" class="java.lang.String"/>
+	<parameter name="SUPW_GRADE" class="java.lang.String"/>
+	<parameter name="RESULT_REMARKS" class="java.lang.String"/>
+	<parameter name="CLASS_TYPE" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[{CALL USP_BCSEA_GET_STD_RESULT($P{INDEX_NO},$P{CLASS_TYPE})}]]>
+	</queryString>
+	<field name="subjectName" class="java.lang.String"/>
+	<field name="marksObtained" class="java.lang.String"/>
+	<field name="marksInWords" class="java.lang.String"/>
+	<field name="marksInGrade" class="java.lang.String"/>
+	<field name="subjectCountInWords" class="java.lang.String"/>
+	<columnHeader>
+		<band height="469" splitType="Stretch">
+			<textField>
+				<reportElement x="82" y="242" width="299" height="24" uuid="14aca991-e2bf-487b-93e1-905f1e338871"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{INDEX_NO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="82" y="220" width="299" height="22" uuid="d0cc92dd-8b6a-4d82-99f7-7f1d216dff1d"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{STUDENT_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="82" y="266" width="299" height="24" uuid="e40d26c5-7b36-4a55-9058-12bb89063ed3"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{SCHOOL_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="82" y="290" width="299" height="23" uuid="b3c43d53-d2e5-4cb9-ade6-ad87ca04bd69"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{RESULT_REMARKS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="255" y="383" width="100" height="20" uuid="63fbc703-d0da-4c87-b308-77a4182713cf"/>
+				<textFieldExpression><![CDATA[$F{subjectCountInWords}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="15" splitType="Stretch">
+			<textField>
+				<reportElement x="58" y="0" width="219" height="15" uuid="adf66256-d656-4037-b0b1-7bb47466e773"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{subjectName}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="391" y="0" width="129" height="15" uuid="ee7d6e8b-4695-47e9-91f1-c7cb7648b512"/>
+				<textElement textAlignment="Left" verticalAlignment="Middle">
+					<font fontName="SansSerif" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{marksInGrade}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="224" splitType="Prevent">
+			<staticText>
+				<reportElement x="41" y="22" width="201" height="20" uuid="799c257f-88e7-428c-8603-b175bd8a2558"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[SUPW & COMMUNITY SERVICE]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="443" y="22" width="70" height="20" uuid="9db41413-2787-4246-b366-5a0a499b01de"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{SUPW_GRADE}]]></textFieldExpression>
+			</textField>
+			<staticText>
+				<reportElement x="41" y="42" width="135" height="20" uuid="093f0b6c-26cc-473d-88d2-d5ef7e7ef6a9"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<text><![CDATA[Examination of December,  ]]></text>
+			</staticText>
+			<textField>
+				<reportElement x="177" y="42" width="66" height="20" uuid="c19bbc1e-f9dc-4bf8-9a03-1fec59137a45"/>
+				<textElement verticalAlignment="Middle">
+					<font fontName="SansSerif" size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{EXAM_YEAR}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="157" y="82" width="119" height="16" uuid="cb508627-1782-4291-8a78-0a04f5847175"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DATE_OF_BIRTH}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+</jasperReport>

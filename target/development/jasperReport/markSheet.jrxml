@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- Created with Jaspersoft Studio version 6.1.1.final using JasperReports Library version 6.1.1  -->
+<!-- 2019-10-23T19:24:33 -->
+<jasperReport xmlns="http://jasperreports.sourceforge.net/jasperreports" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://jasperreports.sourceforge.net/jasperreports http://jasperreports.sourceforge.net/xsd/jasperreport.xsd" name="print" language="groovy" pageWidth="595" pageHeight="842" columnWidth="555" leftMargin="20" rightMargin="20" topMargin="20" bottomMargin="20" uuid="85baa46e-33d0-4b56-808e-b472b7466287">
+	<property name="ireport.zoom" value="1.0"/>
+	<property name="ireport.x" value="0"/>
+	<property name="ireport.y" value="0"/>
+	<property name="ireport.background.image.properties" value="true,true,0.75,69,10,0,14,882,1281"/>
+	<property name="com.jaspersoft.studio.data.sql.tables" value=""/>
+	<parameter name="INDEX_NO" class="java.lang.String"/>
+	<parameter name="STUDENT_NAME" class="java.lang.String"/>
+	<parameter name="EXAM_YEAR" class="java.lang.String"/>
+	<parameter name="SCHOOL_NAME" class="java.lang.String"/>
+	<parameter name="DATE_OF_BIRTH" class="java.lang.String"/>
+	<parameter name="SUPW_GRADE" class="java.lang.String"/>
+	<parameter name="RESULT_REMARKS" class="java.lang.String"/>
+	<parameter name="CLASS_TYPE" class="java.lang.Integer"/>
+	<queryString>
+		<![CDATA[{CALL USP_BCSEA_GET_STD_RESULT($P{INDEX_NO},$P{CLASS_TYPE})}]]>
+	</queryString>
+	<field name="subjectName" class="java.lang.String"/>
+	<field name="marksObtained" class="java.lang.String"/>
+	<field name="marksInWords" class="java.lang.String"/>
+	<field name="marksInGrade" class="java.lang.String"/>
+	<field name="subjectCountInWords" class="java.lang.String"/>
+	<columnHeader>
+		<band height="153">
+			<textField>
+				<reportElement x="49" y="112" width="186" height="21" uuid="49feb25f-6ba8-4156-a9d0-cb7408c376fa"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{INDEX_NO}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="49" y="92" width="265" height="20" uuid="f1e06de6-991c-4aa6-9030-e9588d09efa4"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{STUDENT_NAME}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="49" y="133" width="506" height="20" uuid="66b3c03e-ef97-40c1-88d5-656aa0435af3"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{SCHOOL_NAME}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnHeader>
+	<detail>
+		<band height="13" splitType="Stretch">
+			<textField>
+				<reportElement x="300" y="0" width="190" height="13" uuid="d5286d51-4b58-4119-a5db-79df11ce84f9"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{marksInWords}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="10" y="0" width="290" height="13" uuid="7eaff535-da9b-4896-ae06-2cd246d2b80a"/>
+				<textElement verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$F{subjectName}]]></textFieldExpression>
+			</textField>
+		</band>
+	</detail>
+	<columnFooter>
+		<band height="505">
+			<textField>
+				<reportElement x="378" y="0" width="48" height="16" uuid="e7ffb78e-eeb0-4796-8148-17e227c503f8"/>
+				<textElement textAlignment="Center" verticalAlignment="Middle">
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{SUPW_GRADE}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="32" y="29" width="186" height="16" uuid="46338f09-3f31-4115-b796-658cdc4c8dfe"/>
+				<textElement>
+					<font size="10" isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{RESULT_REMARKS}]]></textFieldExpression>
+			</textField>
+			<textField>
+				<reportElement x="54" y="11" width="181" height="16" uuid="7f9f7335-4b63-4f54-8a06-976a7720643b"/>
+				<textElement verticalAlignment="Middle">
+					<font isBold="true"/>
+				</textElement>
+				<textFieldExpression><![CDATA[$P{DATE_OF_BIRTH}]]></textFieldExpression>
+			</textField>
+		</band>
+	</columnFooter>
+</jasperReport>

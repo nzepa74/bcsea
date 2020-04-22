@@ -1,0 +1,1 @@
+IssueReplacementCertificateDao.getDocumentId = SELECT Document_Id FROM t_document_dtls D ORDER BY D.Document_Id DESC LIMIT 1
